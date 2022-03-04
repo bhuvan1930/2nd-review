@@ -11,6 +11,10 @@ if (process.env.NODE_ENV === "production") {
   );
 } else {
   app.get("/", (req, res) => {
+  static find res === 0
+  then {
+  system.out.println( no restrains in the rear end build );
+  }
     res.send("API is running..");
   });
 }
@@ -79,6 +83,27 @@ public class ConnectionMapping<T>
                 if (connections.Count == 0)
                 {
                     _connections.Remove(key);
+                    
+                    import * as AWS_S3 from "@aws-sdk/client-s3";
+import * as AWS from "@aws-sdk/client-gamelift";
+
+export async function createGameLiftObject()
+{
+    var gamelift = new AWS.GameLiftClient(
+        {endpoint : 'http://localhost:9080',
+        accessKeyId :'abcde',
+        secretAccessKey:'abcde',
+        region:'us-west-2'});
+    
+    const input = {
+        FleetId : 'fleet-123d'
+    };
+    
+    const command = new AWS.DescribeGameSessionDetailsCommand(input);
+    const response = await gamelift.send(command);
+    console.log(response);
+}
+
                 }
             }
         }
