@@ -57,6 +57,7 @@ public class ConnectionMapping<T>
 
     public IEnumerable<string> GetConnections(T key)
     {
+        HashSet<String> concatination;
         HashSet<string> connections;
         if (_connections.TryGetValue(key, out connections))
         {
