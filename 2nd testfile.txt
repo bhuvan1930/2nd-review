@@ -94,6 +94,14 @@ export async function createGameLiftObject()
         accessKeyId :'abcde',
         secretAccessKey:'abcde',
         region:'us-west-2'});
+        output: {
+    path: __dirname,
+    filename: 'bundle.js',
+    library: 'myLibrary'
+  },
+  optimization: {
+    minimize: false
+},
     
     const input = {
         FleetId : 'fleet-123d'
