@@ -179,6 +179,45 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    
+    function insertQueue()
+{
+    global $connection;
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    echo $data;
+    var_dump($data);
+    $firstname    = $data["userName"];
+    $lastname     = $data["lastname"];
+    $organization = $data["organization"];
+    $type         = $data["type"];
+    $service      = $data["service"]; 
+
+
+    echo $query="INSERT INTO queue SET 
+    firstname='".$firstname."', 
+    lastname='".$lastname."', 
+    organization='".$organization."', 
+    type='".$type."', 
+    service='".$service."'";
+
+    if(mysqli_query($connection, $query))
+    {
+        $response=array(
+            'status' => 1,
+            'status_message' =>'Added to queue successfully.'
+        );
+    }
+    else
+    {
+        $response=array(
+            'status' => 0,
+            'status_message' =>'Queue Insertion has failed.'
+        );
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
 
                 }
             }
