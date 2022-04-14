@@ -29,9 +29,11 @@ public class ConnectionMapping<T>
     {
         get
         {
-            return _connections.Count;
+            return _connections.Count;// gets the encrypted details here and get them piped
         }
-    }
+    }// the 1st and the second execution will end up on here and the scond loop goes oon from now 
+    // prior to piping this value must be executed
+    //main method should be initialise here after the sub class here
 
     public void Add(T key, string connectionId)
     {
@@ -43,6 +45,7 @@ public class ConnectionMapping<T>
                 connections = new HashSet<string>();
                 _connections.Add(key, connections);
             }
+            emplpoyee ID cannot be restored from here need to pull it off from the second tables primary key 
 
             lock (connections)
             {
