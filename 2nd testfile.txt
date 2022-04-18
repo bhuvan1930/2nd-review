@@ -222,6 +222,209 @@ dependencies {
     echo json_encode($response);
 }
 
+
+
+public class ConnectionMapping<T>
+{
+    private readonly Dictionary<T, HashSet<string>> _connections = new Dictionary<T,  HashSet<string>>();
+
+    public int Count
+    {
+        get
+        {
+            return _connections.Count;// gets the encrypted details here and get them piped
+        }
+    }// the 1st and the second execution will end up on here and the scond loop goes oon from now 
+    // prior to piping this value must be executed
+    //main method should be initialise here after the sub class here
+
+    public void Add(T key, string connectionId)
+    {
+        lock (_connections)
+        {
+            HashSet<string> connections;
+            if (!_connections.TryGetValue(key, out connections))
+            {
+                connections = new HashSet<string>();
+                _connections.Add(key, connections);
+            }
+            emplpoyee ID cannot be restored from here need to pull it off from the second tables primary key 
+
+            lock (connections)
+            {
+                connections.Add(connectionId);
+            }
+        }
+    }
+
+    public List<T> GetAllConns()
+    {
+        var allConns = _connections.Keys.ToList();
+        
+        return allConns;
+    }
+
+    public IEnumerable<string> GetConnections(T key)
+    {
+        HashSet<String> concatination;
+        HashSet<string> connections;
+        if (_connections.TryGetValue(key, out connections))
+        {
+            return connections;
+        }
+
+        return Enumerable.Empty<string>();
+    }
+
+    public void Remove(T key, string connectionId)
+    {
+        lock (_connections)
+        {
+            HashSet<string> connections;
+            if (!_connections.TryGetValue(key, out connections))
+            {
+                return;
+            }
+
+            lock (connections)
+            {
+                connections.Remove(connectionId);
+
+                if (connections.Count == 0)
+                {
+                    _connections.Remove(key);
+                    
+                    import * as AWS_S3 from "@aws-sdk/client-s3";
+import * as AWS from "@aws-sdk/client-gamelift";
+
+export async function createGameLiftObject()
+{
+    var gamelift = new AWS.GameLiftClient(
+        {endpoint : 'http://localhost:9080',
+        accessKeyId :'abcde',
+        secretAccessKey:'abcde',
+        region:'us-west-2'});
+        output: {
+    path: __dirname,
+    filename: 'bundle.js',
+    library: 'myLibrary'
+  },
+  optimization: {
+    minimize: false
+},
+    
+    const input = {
+        FleetId : 'fleet-123d'
+    };
+    
+    const command = new AWS.DescribeGameSessionDetailsCommand(input);
+    const response = await gamelift.send(command);
+    console.log(response);
+}
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.example.testandroid3"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.4.31'
+    }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
+    implementation 'androidx.activity:activity-compose:1.3.0-alpha02'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    
+    function insertQueue()
+{
+    global $connection;
+
+    $data = json_decode(file_get_contents('php://input'), true);
+    echo $data;
+    var_dump($data);
+    $firstname    = $data["userName"];
+    $lastname     = $data["lastname"];
+    $organization = $data["organization"];
+    $type         = $data["type"];
+    $service      = $data["service"]; 
+
+
+    echo $query="INSERT INTO queue SET 
+    firstname='".$firstname."', 
+    lastname='".$lastname."', 
+    organization='".$organization."', 
+    type='".$type."', 
+    service='".$service."'";
+
+    if(mysqli_query($connection, $query))
+    {
+        $response=array(
+            'status' => 1,
+            'status_message' =>'Added to queue successfully.'
+        );
+    }
+    else
+    {
+        $response=array(
+            'status' => 0,
+            'status_message' =>'Queue Insertion has failed.'
+        );
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
                 }
             }
         }
